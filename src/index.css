@@ -1,0 +1,61 @@
+:root{
+  --main-color: #5ea3d0;
+  --secondary-color: white;
+  --main-text-color: #3e5869;
+  --secondary-text-color: #b0c7d6;
+  --send-message-form: #F5F5F5;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  width:100%;
+}
+h1{
+  color:var(--main-text-color);
+}
+div{
+  padding:10px;
+}
+.App{
+  text-align: center;
+}
+.UserInterface{
+  display:grid;
+  height:100%;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6,1fr);
+  grid-template-areas: 
+  "l m m m m r"
+  "l m m m m r"
+  "l m m m m r"
+  "l m m m m r"
+  "l m m m m r"
+  "l m m m m r";
+}
+.left-sidebar{
+
+  grid-area: l;
+}
+.main-area{
+  grid-area:m;
+}
+.right-sidebar{
+  grid-area: r;
+}
+/*  END OF GRID */
+
+.left-sidebar{
+  box-sizing: border-box;
+  padding:10px;
+  background-color: var(--main-color);
+  overflow: scroll;
+  height: 100%;
+}
+.right-sidebar{
+  box-sizing: border-box;
+  padding:10px;
+  background-color: var(--main-color);
+  overflow: scroll;
+  height: 100%;
+}
