@@ -11,6 +11,12 @@ class App extends Component {
     }
 
     this.setRole=this.setRole.bind(this)
+    this.db={
+      Doctors: [],
+      Nurses: [],
+      Patients: [],
+      Other: [],
+    }
   }
   
     setRole(role){
