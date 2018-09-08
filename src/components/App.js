@@ -10,19 +10,20 @@ class App extends Component {
 
     }
 
-    this.setRole=this.setRole.bind(this)
+    this.checkUser=this.checkUser.bind(this)
     this.db={
-      Doctors: [],
-      Nurses: [],
-      Patients: [],
-      Other: [],
+      Doctor: ["Dexter","Hannibal","d"],
+      Nurse: ["Jennie","Sophie","n"],
+      Patient: ["Aaron","Sarah","p"],
+      Admin: ["Omar","a"],
     }
   }
   
-    setRole(role){
-      this.setState({
-        role
-      })
+    checkUser(role,username){
+      if(this.db[role].includes(username))
+        this.setState({         
+          role
+        })
     }
 
   render() {
@@ -30,13 +31,13 @@ class App extends Component {
     if(!this.state.role)
     return (
       <div className="App">
-        <Login creds={this.setRole} />
+        <Login creds={this.checkUser} />
       </div>
     )
     else
       return(
         <div>Logged in as {this.state.role}
-          <UserInterface role={this.state.role}/>
+          <UserInterface role={this.state.role} users={this.db}/>
         </div>
         
       )

@@ -2,17 +2,19 @@ import React from 'react'
 
 class Admin extends React.Component{
 
-    handleSubmit(ex){
-        console.log(ex);
+
+    
+    handleSubmit(role){
+        let Employees= ''
         
     }
     render(){
         if(this.props.active)
             return(
                 <div>
-                    <button onClick={()=>this.handleSubmit('no')}>Manage Employees</button>
+                    <button onClick={()=>this.handleSubmit('Employees')}>Manage Employees</button>
                     <br />
-                    <button onClick={()=>this.handleSubmit('ok')}>Manage Patients</button>
+                    <button onClick={()=>this.handleSubmit('Patients')}>Manage Patients</button>
                     
                 </div>
             )

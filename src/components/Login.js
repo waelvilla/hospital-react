@@ -31,13 +31,14 @@ class Login extends React.Component {
         })
     }
     handleSubmit(){
-        this.props.creds(this.state.role)
+        this.props.creds(this.state.role,this.state.username)
         this.setState({
             username:'',
             password:'',
         })
     }
     render(){
+        
         return (
             <div className="main-area">
                 <h1> UC Hospital</h1>
@@ -48,10 +49,10 @@ class Login extends React.Component {
                     <input type="radio"  name="role" required onChange={()=>this.handleRadio('Doctor')} /> Doctor
                     <input type="radio"  name="role" onChange={()=>this.handleRadio('Nurse')} /> Nurse
                     <input type="radio"  name="role" onChange={()=>this.handleRadio('Patient')} /> Patient
-                    <input type="radio"  name="role" onChange={()=>this.handleRadio('Admin')} /> Other
+                    <input type="radio"  name="role" onChange={()=>this.handleRadio('Admin')} /> Admin
                     <br />
-                    <div>Username: <input type="text" value={this.state.username} onChange={this.handleUser}  /> </div>
-                    <div>Password: <input type="password" value={this.state.password} onChange={this.handlePass}  /> </div>
+                    <div>Username: <input  type="text" value={this.state.username} onChange={this.handleUser}  /> </div>
+                    <div>Password: <input  type="password" value={this.state.password} onChange={this.handlePass}  /> </div>
                 </div>
                 
                 <button type="submit" >Login</button>
