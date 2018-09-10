@@ -26,12 +26,12 @@ div{
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(6,1fr);
   grid-template-areas: 
-  "l m m m m r"
-  "l m m m m r"
-  "l m m m m r"
-  "l m m m m r"
-  "l m m m m r"
-  "l m m m m r";
+  "l m m m m m"
+  "l m m m m m"
+  "l m m m m m"
+  "l m m m m m"
+  "l m m m m m"
+  "l m m m m m";
 }
 .left-sidebar{
 
@@ -40,22 +40,12 @@ div{
 .main-area{
   grid-area:m;
 }
-.right-sidebar{
-  grid-area: r;
-}
+
 /*  END OF GRID */
 
 .left-sidebar{
   box-sizing: border-box;
   padding:10px;
   background-color: var(--main-color);
-  overflow: scroll;
-  height: 100%;
-}
-.right-sidebar{
-  box-sizing: border-box;
-  padding:10px;
-  background-color: var(--main-color);
-  overflow: scroll;
   height: 100%;
 }

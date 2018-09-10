@@ -5,18 +5,6 @@ import Nurse from './Nurse'
 import Admin from './Admin'
 
 class UserInterface extends React.Component {
-    constructor(){
-        super()
-        this.state={
-            isMed: false,
-        }
-    }
-    componentDidMount(){
-        if(this.props.role.search(/['DoctorNurse']/)===0)
-        this.setState({
-            isMed:true,
-        })     
-    }
 
 
     render(){
@@ -34,12 +22,7 @@ class UserInterface extends React.Component {
                     <Patient active={this.props.role==="Patient"}/>
                     <Admin active={this.props.role==="Admin"} users={this.props.users}/>
                 </div>
-                <div className="right-sidebar">
-                    {(this.state.isMed)
-                        ? <div> You're a doc dude! how cool is that  </div>
-                        : <div> damn you're sick </div>
-                        }
-                </div>
+                
             </div>
         )
     }
