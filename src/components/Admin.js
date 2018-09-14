@@ -1,14 +1,19 @@
 import React from 'react'
 
 class Admin extends React.Component{
-
+    constructor(){
+        super()
+        this.state={
+            Persons:[],
+        }
+    }
 
     
     handleSubmit(role){
         let Persons= ''
         let roles=this.props.users
         for(var r in roles){
-            if(r==role){
+            if(r===role){
                 Persons=roles[r]
                 break
             } 
@@ -19,7 +24,9 @@ class Admin extends React.Component{
         
     }
     render(){
-        if(this.props.active)
+        console.log("---- render----");
+        
+        if(this.props.active && !this.state.Persons.length)
             return(
                 <div>
                     <button onClick={()=>this.handleSubmit('Doctor')}>Manage Doctors</button>
@@ -32,9 +39,17 @@ class Admin extends React.Component{
                     
                 </div>
             )
-        return(
-            <span></span>
-        )
+       
+        else if(this.state.Persons.length)
+            return(
+                <div>
+
+                </div>
+            )
+
+            return(
+                <span></span>
+            )
 
         
     }
