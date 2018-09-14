@@ -3,12 +3,22 @@ import React from 'react'
 class Admin extends React.Component{
     constructor(){
         super()
+        
         this.state={
             Persons:[],
+            roles:[],
+            role:'',
+            
         }
+    }
+    componentWillMount(){
+        this.setState({
+            roles: this.props.roles
+        })        
     }
 
     
+
     handleSubmit(role){
         let Persons= ''
         let roles=this.props.users
@@ -18,32 +28,33 @@ class Admin extends React.Component{
                 break
             } 
         }
+        this.setState({
+            Persons
+        })
         console.log(Persons);
-        
-        
         
     }
     render(){
-        console.log("---- render----");
+        console.log("---admin render----");
         
-        if(this.props.active && !this.state.Persons.length)
+        if(this.props.active )
             return(
                 <div>
-                    <button onClick={()=>this.handleSubmit('Doctor')}>Manage Doctors</button>
-                    <br />
-                    <button onClick={()=>this.handleSubmit('Nurse')}>Manage Nurses</button>
-                    <br />
-                    <button onClick={()=>this.handleSubmit('Admin')}>Manage Admins</button>
-                    <br />
-                    <button onClick={()=>this.handleSubmit('Patient')}>Manage Patients</button>
-                    
+                    {this.state.roles.map((role)=>(
+                        <div key={role}>
+                            <button onClick={()=>this.handleSubmit(role)}>Manage {role}</button>
+                        </div>
+                    ))}
+                    {this.state.Persons.map((person)=>(
+                        <li key={person}>{person}</li>
+                    ))}
                 </div>
             )
        
         else if(this.state.Persons.length)
             return(
                 <div>
-
+                
                 </div>
             )
 

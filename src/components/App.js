@@ -7,6 +7,7 @@ class App extends Component {
     super()
     this.state={
       role:'',
+      roles:[],
 
     }
 
@@ -18,16 +19,25 @@ class App extends Component {
       Admin: ["Omar","a"],
     }
   }
-  
-    checkUser(role,username){
-      if(this.db[role].includes(username))
-        this.setState({         
-          role
-        })
+  componentWillMount(){
+    let roles=[]
+    for(var role in this.db){
+      roles.push(role)
     }
+    this.setState({
+      roles
+    })
+  }
+  checkUser(role,username){
+    if(this.db[role].includes(username))
+      this.setState({         
+        role
+      })
+  }
 
   render() {
-      console.log(this.state.role)
+    
+    console.log(this.state.role)      
     if(!this.state.role)
     return (
       <div className="App">
@@ -37,7 +47,7 @@ class App extends Component {
     else
       return(
         <div>Logged in as {this.state.role}
-          <UserInterface role={this.state.role} users={this.db}/>
+          <UserInterface role={this.state.role} users={this.db} roles={this.state.roles}/>
         </div>
         
       )

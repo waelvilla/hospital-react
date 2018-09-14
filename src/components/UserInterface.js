@@ -20,7 +20,7 @@ class UserInterface extends React.Component {
                     <Doctor active={this.props.role==="Doctor"} />
                     <Nurse  active={this.props.role==="Nurse"}/>
                     <Patient active={this.props.role==="Patient"}/>
-                    <Admin active={this.props.role==="Admin"} users={this.props.users}/>
+                    <Admin active={this.props.role==="Admin"} users={this.props.users} roles={this.props.roles}/>
                 </div>
                 
             </div>
