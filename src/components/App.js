@@ -47,6 +47,7 @@ class App extends Component {
     else
       return(
         <div>Logged in as {this.state.role}
+          <hr />
           <UserInterface role={this.state.role} users={this.db} roles={this.state.roles}/>
         </div>
         
