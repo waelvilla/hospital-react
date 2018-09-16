@@ -49,3 +49,6 @@ div{
   background-color: var(--main-color);
   height: 100%;
 }
+.title{
+  text-align:center;
+}

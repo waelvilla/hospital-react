@@ -6,6 +6,7 @@ class App extends Component {
   constructor(){
     super()
     this.state={
+      user: '',
       role:'',
       roles:[],
 
@@ -19,7 +20,12 @@ class App extends Component {
       Admin: ["Omar","a"],
     }
   }
+  componentDidMount(){
+    console.log("--- did mount ---");
+    
+  }
   componentWillMount(){
+    
     let roles=[]
     for(var role in this.db){
       roles.push(role)
@@ -30,7 +36,8 @@ class App extends Component {
   }
   checkUser(role,username){
     if(this.db[role].includes(username))
-      this.setState({         
+      this.setState({
+        user:username,         
         role
       })
   }
@@ -46,7 +53,12 @@ class App extends Component {
     )
     else
       return(
-        <div>Logged in as {this.state.role}
+        <div>
+          <div>
+            
+            <h1 className="title"> UC Hospital</h1>
+            <span>Logged in as {this.state.role} {this.state.user}</span> 
+          </div>
           <hr />
           <UserInterface role={this.state.role} users={this.db} roles={this.state.roles}/>
         </div>
