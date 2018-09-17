@@ -45,9 +45,11 @@ class Admin extends React.Component{
                             <button onClick={()=>this.handleSubmit(role)}>Manage {role}</button>
                         </div>
                     ))}
-                    {this.state.Persons.map((person)=>(
-                        <li key={person}>{person}</li>
-                    ))}
+                    <div className="display-persons">
+                        {this.state.Persons.map((person)=>(
+                            <div key={person}>{person}</div>
+                        ))}
+                    </div>
                 </div>
             )
        

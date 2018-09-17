@@ -34,13 +34,14 @@ div{
   "l m m m m m";
 }
 .left-sidebar{
-
   grid-area: l;
 }
 .main-area{
   grid-area:m;
 }
-
+/* .display-persons{
+  grid-area: p;
+} */
 /*  END OF GRID */
 
 .left-sidebar{
@@ -51,4 +52,10 @@ div{
 }
 .title{
   text-align:center;
+}
+.display-persons div{
+  border: 1px solid black;
+  max-width: 20%;
+  text-align: center;
+  margin:5px;
 }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Login from './Login'
 import UserInterface from './UserInterface'
+import md5 from 'md5'
+
 class App extends Component {
 
   constructor(){
@@ -14,11 +16,25 @@ class App extends Component {
 
     this.checkUser=this.checkUser.bind(this)
     this.db={
-      Doctor: ["Dexter","Hannibal","d"],
-      Nurse: ["Jennie","Sophie","n"],
-      Patient: ["Aaron","Sarah","p"],
-      Admin: ["Omar","a"],
+      Doctor: [{"Dexter":'dfdf'},
+      "Hannibal",
+      "d",
+    ],
+      Nurse: ["Jennie",
+      "Sophie",
+      "n",
+    ],
+      Patient: ["Aaron",
+      "Sarah",
+      "p",
+    ],
+      Admin: ["Omar",
+      "a",
+    ],
     }
+    //Doctor &Nurse: LENGTH,name, specialization, address, phone
+    this.secret="30a3e620ee188e0c827091fa27e3b428" 
+    
   }
   componentDidMount(){
     console.log("--- did mount ---");
@@ -43,6 +59,7 @@ class App extends Component {
   }
 
   render() {
+    
     
     console.log(this.state.role)      
     if(!this.state.role)
