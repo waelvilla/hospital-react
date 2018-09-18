@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Login from './Login'
 import UserInterface from './UserInterface'
+import Auth from './Auth'
 import md5 from 'md5'
 
 class App extends Component {
@@ -38,6 +39,7 @@ class App extends Component {
   }
   componentDidMount(){
     console.log("--- did mount ---");
+    
     
   }
   componentWillMount(){
