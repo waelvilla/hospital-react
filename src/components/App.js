@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Login from './Login'
 import UserInterface from './UserInterface'
 import Auth from './Auth'
-import md5 from 'md5'
+// import md5 from 'md5'
 
 class App extends Component {
 
@@ -12,6 +12,10 @@ class App extends Component {
       user: '',
       role:'',
       roles:[],
+      Doctors: [],
+      Nurses: [],
+      patients: [],
+      Admins: [],
 
     }
 
@@ -39,6 +43,10 @@ class App extends Component {
   }
   componentDidMount(){
     console.log("--- did mount ---");
+    // https://api.jsonbin.io/b/5ba2854120f16433785be658/1
+    let auth=new Auth()
+    let docs=auth.getDoctors()
+    console.log("Doctors: ",docs);
     
     
   }
@@ -62,12 +70,14 @@ class App extends Component {
 
   render() {
     
-    
+
+
     console.log(this.state.role)      
     if(!this.state.role)
     return (
       <div className="App">
         <Login creds={this.checkUser} />
+        <Auth />
       </div>
     )
     else

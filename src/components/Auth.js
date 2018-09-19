@@ -20,8 +20,24 @@ class Auth extends React.Component{
         console.log('ur gd to go');
         
     }
+    getDoctors(){
+        let data=[]
+        let req=new XMLHttpRequest()
+        req.onreadystatechange= ()=>{
+            if(req.readyState===XMLHttpRequest.DONE){
+                data.push(req.responseText)                
+                return data
+            }
+                
+        }
+        req.open("GET","https://api.jsonbin.io/b/5ba2854120f16433785be658/1",true)
+        req.send()
 
+    }
+    
     render(){
+        console.log(this.getDoctors());
+        
         return(
             <div>Auth</div>
         )
