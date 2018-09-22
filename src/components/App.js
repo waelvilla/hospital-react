@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Login from './Login'
 import UserInterface from './UserInterface'
-import Auth from './Auth'
+// import Auth from './Auth'
 // import md5 from 'md5'
 
 class App extends Component {
@@ -14,54 +14,80 @@ class App extends Component {
       roles:[],
       Doctors: [],
       Nurses: [],
-      patients: [],
+      Patients: [],
       Admins: [],
-
+      loading:true,
+      db: [],
     }
 
     this.checkUser=this.checkUser.bind(this)
-    this.db={
-      Doctor: [{"Dexter":'dfdf'},
-      "Hannibal",
-      "d",
-    ],
-      Nurse: ["Jennie",
-      "Sophie",
-      "n",
-    ],
-      Patient: ["Aaron",
-      "Sarah",
-      "p",
-    ],
-      Admin: ["Omar",
-      "a",
-    ],
-    }
+    this.fetchUsers=this.fetchUsers.bind(this)
+    this.setRoles=this.setRoles.bind(this)
+    // this.db=[this.state.Doctors,this.state.Nurses,this.state.patients,this.state.Admins]
+    //   Doctor: [{"Dexter":'dfdf'},
+    //   "Hannibal",
+    //   "d",
+    // ],
+    //   Nurse: ["Jennie",
+    //   "Sophie",
+    //   "n",
+    // ],
+    //   Patient: ["Aaron",
+    //   "Sarah",
+    //   "p",
+    // ],
+    //   Admin: ["Omar",
+    //   "a",
+    // ],
+
     //Doctor &Nurse: LENGTH,name, specialization, address, phone
     this.secret="30a3e620ee188e0c827091fa27e3b428" 
+    
     
   }
   componentDidMount(){
     console.log("--- did mount ---");
-    // https://api.jsonbin.io/b/5ba2854120f16433785be658/1
-    let auth=new Auth()
-    let docs=auth.getDoctors()
-    console.log("Doctors: ",docs);
-    
+    // https://api.jsonbin.io/b/5ba2854120f16433785be658/3       
+    this.fetchUsers();
     
   }
-  componentWillMount(){
+
+  fetchUsers(){
+    this.setState({
+      loading: true,
+    })
     
-    let roles=[]
-    for(var role in this.db){
-      roles.push(role)
-    }
+    fetch("https://api.jsonbin.io/b/5ba2854120f16433785be658/3")
+    .then((encodedText => encodedText.json()))
+    .then((loadedUsers)=>{      
+        let users=Object.keys(loadedUsers)
+        for(var i in users){
+          this.setState(
+            this.state[users[i]]=loadedUsers[users[i]])
+        }
+        this.setState({
+          loading: false,
+          db: loadedUsers
+
+        })
+        this.setRoles()        
+      })
+    .catch(error => {
+        console.warn(error)
+    }) 
+    
+  }
+  
+  setRoles(){
+    let roles=Object.keys(this.state.db)
     this.setState({
       roles
     })
+
   }
   checkUser(role,username){
-    if(this.db[role].includes(username))
+    let roleInState=role+"s"
+    if(Object.keys(this.state[roleInState]).includes(username))
       this.setState({
         user:username,         
         role
@@ -70,17 +96,19 @@ class App extends Component {
 
   render() {
     
-
+    if(this.state.loading)
+      return(
+        <h1> Loading.... </h1>
+      )
 
     console.log(this.state.role)      
     if(!this.state.role)
     return (
       <div className="App">
         <Login creds={this.checkUser} />
-        <Auth />
       </div>
     )
-    else
+    else    
       return(
         <div>
           <div>
@@ -89,7 +117,7 @@ class App extends Component {
             <span>Logged in as {this.state.role} {this.state.user}</span> 
           </div>
           <hr />
-          <UserInterface role={this.state.role} users={this.db} roles={this.state.roles}/>
+          <UserInterface role={this.state.role} users={this.state.db} roles={this.state.roles}/>
         </div>
         
       )

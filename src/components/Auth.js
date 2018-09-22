@@ -13,7 +13,7 @@ class Auth extends React.Component{
         //xor string with secret 
 
         //return result
-
+        
     }
 
     aut(){
@@ -21,22 +21,30 @@ class Auth extends React.Component{
         
     }
     getDoctors(){
-        let data=[]
-        let req=new XMLHttpRequest()
-        req.onreadystatechange= ()=>{
-            if(req.readyState===XMLHttpRequest.DONE){
-                data.push(req.responseText)                
-                return data
-            }
+        // let data=[]
+        // let req=new XMLHttpRequest()
+        // req.onreadystatechange= ()=>{
+        //     if(req.readyState===XMLHttpRequest.DONE){
+        //         data.push(req.responseText)                
+        //         return data
+        //     }
                 
-        }
-        req.open("GET","https://api.jsonbin.io/b/5ba2854120f16433785be658/1",true)
-        req.send()
-
+        // }
+        // req.open("GET","https://api.jsonbin.io/b/5ba2854120f16433785be658/1",true)
+        // req.send()
+        // fetch("https://api.jsonbin.io/b/5ba2854120f16433785be658/1")
+        // .then((encodedText => encodedText.json()))
+        // .then((docs)=>{
+        //     data.push(docs)
+        //     })
+        // .catch(error => {
+        //     console.warn(error)
+        //     return null
+        // })
+        // return data
     }
     
     render(){
-        console.log(this.getDoctors());
         
         return(
             <div>Auth</div>
