@@ -17,6 +17,7 @@ class App extends Component {
       Patients: [],
       Admins: [],
       loading:true,
+      cantFetch:false,
       db: [],
     }
 
@@ -74,6 +75,9 @@ class App extends Component {
       })
     .catch(error => {
         console.warn(error)
+        this.setState({
+          cantFetch:true,
+        })
     }) 
     
   }
@@ -95,12 +99,16 @@ class App extends Component {
   }
 
   render() {
+    console.log("---render---");
     
-    if(this.state.loading)
+    if(this.state.loading  && !this.state.cantFetch)
       return(
         <h1> Loading.... </h1>
       )
-
+      if(this.state.cantFetch)
+        return(
+          <p>Error: The application could not load the data. Please check your connection. </p>
+        )
     console.log(this.state.role)      
     if(!this.state.role)
     return (
