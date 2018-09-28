@@ -59,3 +59,8 @@ div{
   text-align: center;
   margin:5px;
 }
+td{
+  border: 1px dotted black;
+  min-width: 100px;
+  padding: 5px;
+}

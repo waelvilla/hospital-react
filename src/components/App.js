@@ -12,13 +12,13 @@ class App extends Component {
       user: '',
       role:'',
       roles:[],
-      Doctors: [],
+      Doctors: {"d":{"name":"d","age":12,"Specialty":"GP"},"Hannibal":{"name":"Hannibal","age":42,"Specialty":"Internal Medicine"},"Dexter":{"name":"Dexter","age":38,"Specialty":"Surgery"}},
       Nurses: [],
       Patients: [],
       Admins: [],
       loading:true,
       cantFetch:false,
-      db: [],
+      db: [{"Doctors":{"d":{"name":"d","age":12,"Specialty":"GP"},"Hannibal":{"name":"Hannibal","age":42,"Specialty":"Internal Medicine"},"Dexter":{"name":"Dexter","age":38,"Specialty":"Surgery"}},"Nurses":{"Jennie":{"name":"Jennie","age":"28","Specialty":"Internal Medicine"},"Sophie":{"name":"Sophie","age":30,"Specialty":"Surgery"},"n":{"name":"n","age":40,"Specialty":"Internal Medicine"}},"Patients":{"p":{"name":"p","age":"0","State":"all"},"Aaron":{"name":"Aaron","age":"53","State":"Florida"},"Sarah":{"name":"Sarah","age":"39","State":"California"}},"Admins":{"Omar":{"name":"Omar","age":32,"role":"DBA"},"a":{"name":"a","age":"0","role":"admin"}}}],
     }
 
     this.checkUser=this.checkUser.bind(this)
@@ -41,13 +41,11 @@ class App extends Component {
     //   "a",
     // ],
 
-    //Doctor &Nurse: LENGTH,name, specialization, address, phone
     this.secret="30a3e620ee188e0c827091fa27e3b428" 
-    
     
   }
   componentDidMount(){
-    console.log("--- did mount ---");
+    console.log("--- app mount ---");
     // https://api.jsonbin.io/b/5ba2854120f16433785be658/3       
     this.fetchUsers();
     
@@ -71,6 +69,8 @@ class App extends Component {
           db: loadedUsers
 
         })
+        console.log("---DB Connected---");
+        
         this.setRoles()        
       })
     .catch(error => {
@@ -90,7 +90,9 @@ class App extends Component {
 
   }
   checkUser(role,username){
+        // how tf
     let roleInState=role+"s"
+
     if(Object.keys(this.state[roleInState]).includes(username))
       this.setState({
         user:username,         
@@ -100,15 +102,16 @@ class App extends Component {
 
   render() {
     console.log("---render---");
+    console.log(this.state.db.Doctors);
     
     if(this.state.loading  && !this.state.cantFetch)
       return(
         <h1> Loading.... </h1>
       )
-      if(this.state.cantFetch)
-        return(
-          <p>Error: The application could not load the data. Please check your connection. </p>
-        )
+      // if(this.state.cantFetch)
+      //   return(
+      //     <p>Error: The application could not load the data. Please check your connection. </p>
+      //   )
     console.log(this.state.role)      
     if(!this.state.role)
     return (
@@ -125,7 +128,7 @@ class App extends Component {
             <span>Logged in as {this.state.role} {this.state.user}</span> 
           </div>
           <hr />
-          <UserInterface role={this.state.role} users={this.state.db} roles={this.state.roles}/>
+          <UserInterface role={this.state.role} users={this.state.db} roles={this.state.roles} user={this.state.user}/>
         </div>
         
       )

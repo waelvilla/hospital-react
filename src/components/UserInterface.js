@@ -17,12 +17,11 @@ class UserInterface extends React.Component {
                     <button> Change Password </button>
                 </div>
                 <div className="main-area">
-                    <Doctor active={this.props.role==="Doctor"} />
+                    <Doctor active={this.props.role==="Doctor"} data={this.props.users.Doctors[this.props.user]} />
                     <Nurse  active={this.props.role==="Nurse"}/>
                     <Patient active={this.props.role==="Patient"}/>
                     <Admin active={this.props.role==="Admin"} users={this.props.users} roles={this.props.roles}/>
                 </div>
-                
             </div>
         )
     }
