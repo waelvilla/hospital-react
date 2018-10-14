@@ -1,12 +1,31 @@
 import React from 'react'
 
 class Doctor extends React.Component{
-    constructor(){
+    constructor(name,age,speciality){
         super()
         this.state={
 
         }
     }
+    setName(name){
+        this.name=name
+    }
+    getName(){
+        return this.name
+    }
+    setAge(age){
+        this.age=age
+    }
+    getAge(){
+        return this.age
+    }
+    setSpeciality(speciality){
+        this.speciality=speciality
+    }
+    getSpeciality(){
+        return this.speciality
+    }
+
     componentDidMount(){
         console.log("---Doctor Mounted---");
         
