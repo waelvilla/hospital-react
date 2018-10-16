@@ -1,7 +1,7 @@
 import React from 'react'
 
 class Doctor extends React.Component{
-    constructor(name,age,speciality){
+    constructor(){
         super()
         this.state={
 
