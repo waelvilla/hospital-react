@@ -49,8 +49,10 @@ class Login extends React.Component {
                     <label> Login Type: </label>
                     <input type="radio"  name="role" required onChange={()=>this.handleRadio('Doctor')} /> Doctor
                     <input type="radio"  name="role" onChange={()=>this.handleRadio('Nurse')} /> Nurse
+                    <input type="radio"  name="role" onChange={()=>this.handleRadio('Receptionist')} /> Receptionist
                     <input type="radio"  name="role" onChange={()=>this.handleRadio('Patient')} /> Patient
                     <input type="radio"  name="role" onChange={()=>this.handleRadio('Admin')} /> Admin
+                    
                     <br />
                     <div>Username: <input  type="text" value={this.state.username} onChange={this.handleUser}  /> </div>
                     <div>Password: <input  type="password" value={this.state.password} onChange={this.handlePass}  /> </div>

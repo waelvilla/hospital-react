@@ -14,12 +14,13 @@ class App extends Component {
       roles:[],
       Doctors: {"d":{"name":"d","age":12,"Specialty":"GP"},"Hannibal":{"name":"Hannibal","age":42,"Specialty":"Internal Medicine"},"Dexter":{"name":"Dexter","age":38,"Specialty":"Surgery"}},
       Nurses: [],
+      Receptionist:[],
       Patients: [],
       Admins: [],
       loading:true,
       cantFetch:false,
-      db: [{"Doctors":{"d":{"name":"d","age":12,"Specialty":"GP"},"Hannibal":{"name":"Hannibal","age":42,"Specialty":"Internal Medicine"},"Dexter":{"name":"Dexter","age":38,"Specialty":"Surgery"}},"Nurses":{"Jennie":{"name":"Jennie","age":"28","Specialty":"Internal Medicine"},"Sophie":{"name":"Sophie","age":30,"Specialty":"Surgery"},"n":{"name":"n","age":40,"Specialty":"Internal Medicine"}},"Patients":{"p":{"name":"p","age":"0","State":"all"},"Aaron":{"name":"Aaron","age":"53","State":"Florida"},"Sarah":{"name":"Sarah","age":"39","State":"California"}},"Admins":{"Omar":{"name":"Omar","age":32,"role":"DBA"},"a":{"name":"a","age":"0","role":"admin"}}}],
-    }
+      db:{},
+      }
 
     this.checkUser=this.checkUser.bind(this)
     this.fetchUsers=this.fetchUsers.bind(this)
@@ -54,6 +55,18 @@ class App extends Component {
   fetchUsers(){
     this.setState({
       loading: true,
+      db: {"Doctors":{"d":{"name":"d","age":13,"Specialty":"GP"},
+                      "Hannibal":{"name":"Hannibal","age":42,"Specialty":"Internal Medicine"},
+                      "Dexter":{"name":"Dexter","age":38,"Specialty":"Surgery"}},
+            "Nurses":{"Jennie":{"name":"Jennie","age":"28","Specialty":"Internal Medicine"},
+                      "Sophie":{"name":"Sophie","age":30,"Specialty":"Surgery"},
+                      "n":{"name":"n","age":40,"Specialty":"Internal Medicine"}},
+            "Patients":{"p":{"name":"p","age":"0","State":"all"},
+                        "Aaron":{"name":"Aaron","age":"53","State":"Florida"},
+                        "Sarah":{"name":"Sarah","age":"39","State":"California"}},
+            "Admins":{"Omar":{"name":"Omar","age":32,"role":"DBA"},
+                      "a":{"name":"a","age":"0","role":"admin"}}},
+
     })
     
     fetch("https://api.jsonbin.io/b/5ba2854120f16433785be658/3")
@@ -75,6 +88,7 @@ class App extends Component {
       })
     .catch(error => {
         console.warn(error)
+        console.warn("Local DB will be used instead")
         this.setState({
           cantFetch:true,
         })
@@ -102,7 +116,7 @@ class App extends Component {
 
   render() {
     console.log("---render---");
-    console.log(this.state.db.Doctors);
+    console.log("Doctors: ",this.state.db.Doctors);
     
     if(this.state.loading  && !this.state.cantFetch)
       return(
