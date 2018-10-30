@@ -116,6 +116,7 @@ class App extends Component {
 
   render() {
     console.log("---render---");
+    
     console.log("Doctors: ",this.state.db.Doctors);
     
     if(this.state.loading  && !this.state.cantFetch)
